@@ -57,7 +57,7 @@ p {
 .main-header {
     background-color: var(--color-white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 15px 0;
+    padding: 2px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -65,23 +65,23 @@ p {
 
 .navbar {
     display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center;
-    max-width: 1100px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;     /* this vertically centers EVERYTHING inside */
+    max-width: 2000px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 10px 20px;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: var(--color-black);
-    letter-spacing: -1px;
-    margin-bottom: 0; 
-    display: inline-block; 
-    margin-right: 30px; 
+    margin: 0;               /* removes bottom gap */
+    display: flex;
+    align-items: center;     /* vertical center for text/logo */
 }
+
 
 .logo:hover {
     color: var(--color-dark-gray);
@@ -91,12 +91,10 @@ p {
     list-style: none;
     font-weight: bold;
     display: flex;
-    flex-grow: 1; 
-    justify-content: center; 
 }
 
 .nav-links li {
-    padding: 0 15px; 
+    padding: 0 2px; 
 }
 
 .nav-item {
@@ -601,47 +599,39 @@ p {
 
 
 @media (max-width: 768px) {
-    /* Logo should be hidden on mobile */
+    /* Hides the logo on mobile */
     .logo {
         display: none;
     }
 
-    /* Navbar stays a single row (flex-direction: row is default) */
     .navbar {
-        /* Align content to the left edge of the screen */
-        justify-content: flex-start; 
-        flex-direction: row; 
-        align-items: center;
+        /* On small screens, stack the logo (hidden) and nav-links vertically and center them */
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center; 
         padding: 0 10px;
     }
     
     .nav-links {
-        display: flex;
-        flex-wrap: nowrap; 
-        white-space: nowrap; 
-        overflow-x: auto; 
-        overflow-y: hidden; 
-        -webkit-overflow-scrolling: touch; 
-  
-        margin-left: 0; 
-        padding-bottom: 5px;
-    }
-    .nav-links::-webkit-scrollbar {
-        display: none; 
+        /* Allow links to wrap to the next line */
+        flex-wrap: wrap; 
+        justify-content: center; /* Centers the links inside the container */
+        
+        /* Remove the swipeable properties if switching back to stacking/wrapping: */
+        overflow-x: visible; /* Or remove entirely */
+        white-space: normal;
+        margin-top: 15px; /* Add space below the logo area */
+        padding-bottom: 0;
     }
     
     .nav-links li {
-        margin: 0 15px 0 0; 
-        padding: 0; 
-        flex-shrink: 0; 
+        margin: 5px 10px; 
+        flex-shrink: 1; 
     }
-    .nav-links li:first-child {
-        padding-left: 0;
+    
+    .nav-links::-webkit-scrollbar {
+        display: none; 
     }
-    .nav-links li:last-child {
-        padding-right: 0;
-    }
-
     .hero-title {
         font-size: 2.5rem;
     }
