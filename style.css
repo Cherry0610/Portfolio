@@ -599,39 +599,49 @@ p {
 
 
 @media (max-width: 768px) {
-    /* Hides the logo on mobile */
+    /* FIX 1: Explicitly hide the visible desktop logo on mobile screens */
     .logo {
-        display: none;
+        display: none; 
     }
 
     .navbar {
-        /* On small screens, stack the logo (hidden) and nav-links vertically and center them */
-        flex-direction: column; 
-        justify-content: center;
+        /* Reverts back to a single row to allow the links to flow horizontally */
+        flex-direction: row; 
+        justify-content: flex-start; /* Aligns content to the left edge */
         align-items: center; 
         padding: 0 10px;
     }
     
     .nav-links {
-        /* Allow links to wrap to the next line */
-        flex-wrap: wrap; 
-        justify-content: center; /* Centers the links inside the container */
+        display: flex;
         
-        /* Remove the swipeable properties if switching back to stacking/wrapping: */
-        overflow-x: visible; /* Or remove entirely */
-        white-space: normal;
-        margin-top: 15px; /* Add space below the logo area */
-        padding-bottom: 0;
+        /* KEY FIX: Forces links onto a single row, enabling overflow/swiping */
+        flex-wrap: nowrap; 
+        white-space: nowrap; 
+
+        /* KEY FIX: Enables horizontal scrolling on the link list */
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        -webkit-overflow-scrolling: touch; 
+        
+        /* Remove vertical margin from stacking layout */
+        margin-top: 0; 
+        padding-bottom: 5px; /* Space for the invisible scrollbar area */
     }
-    
-    .nav-links li {
-        margin: 5px 10px; 
-        flex-shrink: 1; 
-    }
-    
+
+    /* Hides the physical scrollbar for a cleaner swipe look */
     .nav-links::-webkit-scrollbar {
         display: none; 
     }
+    
+    .nav-links li {
+        /* Use spacing, and crucially, prevent links from shrinking */
+        margin: 0 15px 0 0; 
+        padding: 0;
+        flex-shrink: 0; 
+    }
+    
+    /* --- GENERAL MOBILE ADJUSTMENTS (Keeping your sizing changes) --- */
     .hero-title {
         font-size: 2.5rem;
     }
