@@ -1,0 +1,640 @@
+/* --- Root Variables & Basic Reset --- */
+:root {
+    --color-black: #1a1a1a;
+    --color-white: #ffffff;
+    --color-gray: #f0f0f0;
+    --color-dark-gray: #333333;
+    --font-primary: 'Arial', sans-serif; /* You can link Google Fonts for better typography */
+    --transition-speed: 0.3s ease-in-out;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-gray);
+    background-color: var(--color-gray);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Global Utilities --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--color-dark-gray);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-black);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-black);
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* --- Header & Navigation --- */
+.main-header {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-black);
+    letter-spacing: -1px;
+}
+
+.logo:hover {
+    color: var(--color-dark-gray);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-item {
+    font-size: 1.05rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px; /* Space for underline animation */
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-black);
+    left: 0;
+    bottom: 0;
+    transition: width var(--transition-speed);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 80vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+    
+    /* 1. Background Image Setup */
+    background-image: url('Background.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    position: relative; 
+}
+
+/* 2. Semi-Transparent Overlay (50% Opacity) */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* White background with 50% opacity (0.5) */
+    z-index: 1; /* Place the overlay beneath the content but above the background image */
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative; /* Bring the text content to the front */
+    z-index: 2; /* Must be higher than the z-index of the ::before overlay */
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block; /* Essential for typing effect */
+    white-space: nowrap; /* Keep text on one line */
+    overflow: hidden; /* Hide overflow for typing effect */
+    border-right: 3px solid var(--color-black); /* Cursor effect */
+    animation: typing 3s steps(22, end) forwards, blink-caret .75s step-end infinite;
+}
+
+/* For animation in HTML, we need the actual text to be visually shown,
+   then we can use 'data-text' for JS or CSS-only animation tricks.
+   Here, we're using a CSS-only typing effect for simplicity.
+   The 'steps(22, end)' should match the number of characters in the 'data-text' or the displayed text.
+   "Hi, I'm Your Name." has 22 characters including spaces and punctuation.
+*/
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-black); }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: var(--color-dark-gray);
+    animation: fadeIn 1s ease-out 3.2s forwards; /* Delay fade-in after typing */
+    opacity: 0; /* Start invisible */
+}
+
+.highlight-text {
+    font-weight: bold;
+    color: var(--color-black);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out 3.5s forwards; /* Delay fade-in */
+    opacity: 0; /* Start invisible */
+}
+
+.cta-button:hover {
+    background-color: var(--color-dark-gray);
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- About Section Specific Styling --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Creates a 1/3 and 2/3 column layout */
+    gap: 60px;
+    align-items: center;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.profile-photo {
+    width: 100%;
+    max-width: 250px; /* Limits the size of the photo */
+    height: auto;
+    border-radius: 5px; /* Subtle rounded corners */
+    border: 3px solid var(--color-black);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease-out;
+}
+
+.profile-photo:hover {
+    transform: scale(1.03); /* Subtle hover effect */
+}
+
+.intro-statement {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: var(--color-black);
+}
+
+/* Secondary Button Style (used for 'Let's Connect' button) */
+.secondary-button {
+    background-color: transparent;
+    border: 2px solid var(--color-black);
+    color: var(--color-black);
+    box-shadow: none;
+}
+
+.secondary-button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* Stack the columns on small screens */
+        gap: 30px;
+        text-align: center;
+    }
+    .profile-photo {
+        max-width: 150px;
+    }
+}
+
+/* --- General Content Sections (for below the homepage) --- */
+.content-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: var(--color-white);
+    margin-bottom: 1px; /* Visual separation for sections */
+}
+
+.content-section:nth-of-type(even) { /* Alternate background for sections */
+    background-color: var(--color-gray);
+}
+
+.content-section h3 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.content-section h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-black);
+}
+
+/* --- Skills Section New Styling --- */
+.skills-category-container {
+    display: grid;
+    /* Sets up a responsive grid: 3 columns on desktop, wrapping on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skills-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.3s ease-out;
+    border: 1px solid var(--color-gray);
+}
+
+.skills-card:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.skills-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-gray);
+}
+
+.skills-list-detail {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+}
+
+.skills-list-detail li {
+    padding: 8px 0;
+    position: relative;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+/* Custom bullet point using a Unicode character (Black circle) */
+.skills-list-detail li::before {
+    content: "•";
+    color: var(--color-black);
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Responsive adjustment for single column stack on small screens */
+@media (max-width: 650px) {
+    .skills-category-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h4 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: var(--color-dark-gray);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 600;
+    position: relative;
+}
+
+.project-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-black);
+    left: 0;
+    bottom: -3px;
+    transition: width var(--transition-speed);
+}
+
+.project-link:hover::after {
+    width: 100%;
+}
+
+/* --- Experience Section Timeline Styling --- */
+
+/* Timeline Container Setup */
+.timeline-container {
+    max-width: 800px;
+    margin: 60px auto 0 auto;
+    position: relative;
+    padding-left: 30px; /* Space for the vertical line */
+}
+
+/* Vertical Timeline Line */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--color-black);
+    top: 0;
+    bottom: 0;
+    left: 10px;
+}
+
+/* Individual Job/Experience Item */
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 30px; /* Space between dot/line and content */
+}
+
+/* Timeline Dot (The circle on the line) */
+.timeline-dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-black);
+    border: 3px solid var(--color-white); /* White border for visual contrast against the line */
+    top: 8px;
+    left: 3px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+/* Content Box Styling */
+.timeline-content {
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+/* --- Job Logo Styling within Timeline --- */
+
+.job-header {
+    display: flex;
+    align-items: center; /* Vertically centers the photo and text */
+    margin-bottom: 10px;
+}
+
+/* Styles for the container holding the photo (LARGER SIZE, RECTANGULAR) */
+.job-logo-wrapper {
+    width: 80px;  /* INCREASED WIDTH for a more prominent photo */
+    height: 60px; /* NEW HEIGHT for a rectangular shape */
+    min-width: 80px; /* Prevents shrinking */
+    margin-right: 20px; /* More space between photo and text */
+    border-radius: 5px; /* Subtle rounded corners for the photo container */
+    overflow: hidden;
+    border: 1px solid var(--color-gray);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles the actual image */
+.job-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+/* Adjusts the h4 title to sit correctly next to the photo */
+.timeline-content h4 {
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+/* Job Title Styling */
+.timeline-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0; /* Reset margin since it's inside job-header */
+    line-height: 1.2; /* Better line spacing for multi-line titles */
+}
+
+/* Job Duration/Date Styling */
+.timeline-duration {
+    display: block;
+    color: var(--color-dark-gray);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Bulleted Details List */
+.timeline-details {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline-details li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+/* Custom Bullet Point for details */
+.timeline-details li::before {
+    content: "—"; /* Use a dash or long hyphen for a clean look */
+    color: var(--color-black);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* --- Responsive adjustment for the timeline on very small screens --- */
+@media (max-width: 480px) {
+    .timeline-container {
+        padding-left: 20px;
+    }
+    .timeline-item {
+        padding-left: 20px;
+    }
+    /* Stack job header elements on very small screens if needed */
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .job-logo-wrapper {
+        margin-right: 0;
+        margin-bottom: 10px; /* Space below the image when stacked */
+    }
+}
+
+/* Contact Section */
+.contact-link {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+/* --- General Fade-in Animation (requires JS to trigger on scroll for best effect) --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Initially hide elements that should fade in on scroll */
+.content-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- Responsive Design (Basic) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 15px;
+    }
+    .nav-links li {
+        margin: 0 15px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .content-section h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-links li {
+        margin: 5px 10px;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .skill-item {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
