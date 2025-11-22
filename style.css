@@ -64,20 +64,19 @@ p {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    flex-wrap: nowrap; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--color-black);
-    letter-spacing: -1px;
+    font-size: 0; 
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .logo:hover {
@@ -596,29 +595,17 @@ p {
 
 /* --- Responsive Design (Basic) --- */
 @media (max-width: 768px) {
-    /* --- NAVIGATION: Swipeable Horizontal Menu --- */
     .navbar {
         padding: 0 10px; 
-        justify-content: flex-start; /* Align content to the left */
-        flex-wrap: nowrap; /* Forces logo and links onto one line */
-    }
-
-    .logo {
-        flex-shrink: 0; /* Prevents logo from shrinking */
-        padding-right: 15px; /* Space between logo and links */
+        flex-wrap: nowrap; 
     }
     
     .nav-links {
-        display: flex;
-        
-        /* KEY CSS for horizontal swipe */
-        overflow-x: auto; /* Enables horizontal scrolling */
-        overflow-y: hidden; /* Hides vertical overflow */
-        -webkit-overflow-scrolling: touch; /* Improves scrolling on iOS */
-        
-        white-space: nowrap; /* Forces links onto a single row */
-        
-        margin-left: 10px;
+        display: flex; 
+        overflow-x: auto; 
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;       
+        white-space: nowrap; 
         margin-top: 0;
         padding-bottom: 5px; 
     }
