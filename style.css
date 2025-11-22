@@ -65,15 +65,21 @@ p {
 
 .navbar {
     display: flex;
+    flex-direction: column; 
     justify-content: center; 
-    align-items: center;
+    align-items: center; 
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .logo {
-    display: none; 
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-black);
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    display: block; 
 }
 
 .logo:hover {
@@ -86,7 +92,7 @@ p {
 }
 
 .nav-links li {
-    margin-left: 30px;
+    padding: 0 15px; 
 }
 
 .nav-item {
