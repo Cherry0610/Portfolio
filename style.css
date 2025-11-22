@@ -64,19 +64,16 @@ p {
 }
 
 .navbar {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo {
-    font-size: 0; 
-    width: 0;
-    height: 0;
-    overflow: hidden;
+    display: none; 
 }
 
 .logo:hover {
@@ -593,29 +590,39 @@ p {
 }
 
 
-/* --- Responsive Design (Basic) --- */
 @media (max-width: 768px) {
+    /* Hides the logo on mobile */
+    .logo {
+        display: none;
+    }
+
     .navbar {
-        padding: 0 10px; 
-        flex-wrap: nowrap; 
+        /* On small screens, stack the logo (hidden) and nav-links vertically and center them */
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center; 
+        padding: 0 10px;
     }
     
     .nav-links {
-        display: flex; 
-        overflow-x: auto; 
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;       
-        white-space: nowrap; 
-        margin-top: 0;
-        padding-bottom: 5px; 
+        /* Allow links to wrap to the next line */
+        flex-wrap: wrap; 
+        justify-content: center; /* Centers the links inside the container */
+        
+        /* Remove the swipeable properties if switching back to stacking/wrapping: */
+        overflow-x: visible; /* Or remove entirely */
+        white-space: normal;
+        margin-top: 15px; /* Add space below the logo area */
+        padding-bottom: 0;
     }
-
-    .nav-links::-webkit-scrollbar {
-        display: none;
-    }
+    
     .nav-links li {
-        margin: 0 15px 0 0; 
-        flex-shrink: 0; 
+        margin: 5px 10px; 
+        flex-shrink: 1; 
+    }
+    
+    .nav-links::-webkit-scrollbar {
+        display: none; 
     }
     .hero-title {
         font-size: 2.5rem;
