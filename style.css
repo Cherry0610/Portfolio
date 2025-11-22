@@ -88,6 +88,7 @@ p {
 
 .nav-links {
     list-style: none;
+    font-weight: bold;
     display: flex;
 }
 
@@ -597,39 +598,47 @@ p {
 
 
 @media (max-width: 768px) {
-    /* Hides the logo on mobile */
+    /* Logo should be hidden on mobile */
     .logo {
         display: none;
     }
 
+    /* Navbar stays a single row (flex-direction: row is default) */
     .navbar {
-        /* On small screens, stack the logo (hidden) and nav-links vertically and center them */
-        flex-direction: column; 
-        justify-content: center;
-        align-items: center; 
+        /* Align content to the left edge of the screen */
+        justify-content: flex-start; 
+        flex-direction: row; 
+        align-items: center;
         padding: 0 10px;
     }
     
     .nav-links {
-        /* Allow links to wrap to the next line */
-        flex-wrap: wrap; 
-        justify-content: center; /* Centers the links inside the container */
-        
-        /* Remove the swipeable properties if switching back to stacking/wrapping: */
-        overflow-x: visible; /* Or remove entirely */
-        white-space: normal;
-        margin-top: 15px; /* Add space below the logo area */
-        padding-bottom: 0;
+        display: flex;
+        flex-wrap: nowrap; 
+        white-space: nowrap; 
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        -webkit-overflow-scrolling: touch; 
+  
+        margin-left: 0; 
+        padding-bottom: 5px;
     }
-    
-    .nav-links li {
-        margin: 5px 10px; 
-        flex-shrink: 1; 
-    }
-    
     .nav-links::-webkit-scrollbar {
         display: none; 
     }
+    
+    .nav-links li {
+        margin: 0 15px 0 0; 
+        padding: 0; 
+        flex-shrink: 0; 
+    }
+    .nav-links li:first-child {
+        padding-left: 0;
+    }
+    .nav-links li:last-child {
+        padding-right: 0;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
