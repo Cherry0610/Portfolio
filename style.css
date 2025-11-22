@@ -656,13 +656,66 @@ p {
 }
 
 @media (max-width: 480px) {
+    /* --- HERO SECTION Sizing --- */
     .hero-title {
-        font-size: 2rem;
+        /* Reduce the main title size slightly for small screens */
+        font-size: 2rem; 
     }
     .hero-subtitle {
-        font-size: 1rem;
-    }    
+        /* Reduce the subtitle size */
+        font-size: 1rem; 
+    }
+    .cta-button {
+        /* Make the main button slightly smaller */
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+    
+    /* --- SECTION HEADINGS --- */
+    .content-section h3 {
+        /* Reduce section titles for compact look */
+        font-size: 1.8rem;
+    }
+
+    /* --- SKILLS SECTION Stacking --- */
     .skills-category-container {
+        /* Forces skill cards to stack vertically on the smallest screens */
         grid-template-columns: 1fr; 
+        gap: 20px; /* Reduce vertical gap */
+    }
+
+    /* --- PROJECT SECTION Stacking --- */
+    .project-grid {
+        /* Forces project cards to stack vertically on the smallest screens */
+        grid-template-columns: 1fr; 
+        gap: 20px; /* Reduce vertical gap */
+    }
+    
+    .project-card h4 {
+        font-size: 1.4rem;
+    }
+
+    /* --- EXPERIENCE & TIMELINE --- */
+    /* Your existing timeline adjustment for 480px is good, ensuring content fits */
+    .timeline-container {
+        padding-left: 20px;
+    }
+    .timeline-item {
+        padding-left: 20px;
+    }
+    .job-header {
+        /* Ensures image and text stack if necessary */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .job-logo-wrapper {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    /* --- FOOTER --- */
+    .main-footer {
+        padding: 20px 0;
+        font-size: 0.8rem;
     }
 }
